@@ -1,53 +1,46 @@
 "use client";
-import styles from "@/assets/sass/bookApply.module.scss";
 import Image from "next/image";
-import { Col, Row, Container } from "react-bootstrap";
-import RootContainer from "@/components/shared/container";
+import Container from "@/components/shared/container";
+import Button from "@/components/shared/button";
 
 const BookApply = () => {
   const imageUrl =
     "/img/2022_bentley_flying_spur_hybrid_5k_7-HD-1-scaled-pqj35bw2yuysg3t40p19etb8ekfo1l8dsc9w53a6q0.jpg";
 
   return (
-    <RootContainer>
-      <div className={styles.main}>
-        <Row>
-          <Col
-            lg={4}
-            className={`${styles.colImage} d-none d-lg-block`}
-            sm={12}
-          >
-            <Image
-              src={imageUrl}
-              sizes="(max-width:1200px) 100vw"
-              height={400}
-              width={370}
-              placeholder="empty"
-            />
-          </Col>
-          <Col className={styles.colText} lg={4} md={6} sm={12}>
-            <h2>Apply For Financing</h2>
-            <p>
+    <Container>
+      <div className="relative py-2">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+          <div className={`h-96 relative hidden lg:hidden xl:block`}>
+            <Image src={imageUrl} fill placeholder="empty" />
+          </div>
+          <div className={"flex flex-col  justify-center text-white px-5 h-96"}>
+            <h2 className="whitespace-nowrap">Apply For Financing</h2>
+            <p className="text-justify font-light leading-6">
               The United Auto Sales Ltd financing application is dedicated to
               exceeding your expectations throughout your visit to our
               dealership. We make every effort to ensure that each customer is
               completely satisfied.
             </p>
-            <button>Apply Now</button>
-          </Col>
-          <Col lg={4} md={6} sm={12} className={styles.colText}>
-            <h2>Book An Appointment</h2>
-            <p>
+            <Button className="w-52 !text-center h-10 flex justify-center text-sm">
+              Apply Now
+            </Button>
+          </div>
+          <div className={"flex flex-col  justify-center text-white px-5 h-96"}>
+            <h2 className="whitespace-nowrap">Book An Appointment</h2>
+            <p className="text-justify font-light leading-6 ">
               The majority of customers now prefer to be able to book
               appointments quickly and easily online , So we here at United Auto
               Sales Ltd have decided to provide you with the tools needed for
               booking an appointment at the time of your convenience .
             </p>
-            <button>Book Now</button>
-          </Col>
-        </Row>
+            <Button className="w-52 !text-center h-10 flex justify-center text-sm">
+              Book Now
+            </Button>
+          </div>
+        </div>
       </div>
-    </RootContainer>
+    </Container>
   );
 };
 

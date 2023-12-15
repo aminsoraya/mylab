@@ -7,9 +7,9 @@ import { useInView } from "react-intersection-observer";
 const LatestProduct = dynamic(() => import("@/components/home/latestProduct"), {
   ssr: false,
 });
-// const BookApply = dynamic(() => import("@/components/home/bookApply"), {
-//   ssr: false,
-// });
+const BookApply = dynamic(() => import("@/components/home/bookApply"), {
+  ssr: false,
+});
 
 // const AboutUs = dynamic(() => import("@/components/home/aboutUs"), {
 //   ssr: false,
@@ -24,9 +24,9 @@ export default function Home() {
     threshold: 0,
   });
 
-  // const { inView: BookApplyInView, ref: bookApplyRef } = useInView({
-  //   threshold: 0,
-  // });
+  const { inView: BookApplyInView, ref: bookApplyRef } = useInView({
+    threshold: 0,
+  });
 
   // const { inView: AboutUsInView, ref: aboutUsRef } = useInView({
   //   threshold: 0,
@@ -38,23 +38,18 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full">
-       <Slider /> 
+      <Slider />
 
-      <div ref={latestProductRef} className="pb-[100px]">
+      <div ref={latestProductRef}>
         {LatestProductInView && <LatestProduct />}
-      </div> 
+      </div>
 
-      {/* <div
+      <div
         ref={bookApplyRef}
-        style={{
-          minHeight: "100px",
-          width: "100%",
-          position: "relative",
-          background: "#2e2e2e",
-        }}
+        className="bg-gray-darkest relative w-full min-h-[100px]"
       >
         {BookApplyInView && <BookApply />}
-      </div> */}
+      </div>
 
       {/* <div
         ref={aboutUsRef}
