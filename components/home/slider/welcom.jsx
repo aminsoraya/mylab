@@ -6,7 +6,7 @@ const Welcome = () => {
   return (
     <Container>
       <div
-        className={` pb-5 absolute lg:bottom-32 bottom-6 z-10  text-white lg:w-6/12 text-justify leading-6 text-sm `}
+        className={`left-0 pb-5 absolute lg:bottom-32 bottom-6 z-10  text-white lg:w-6/12 text-justify leading-6 text-sm `}
       >
         <h2>WELCOME TO OUR WEBSITE</h2>
         <p>

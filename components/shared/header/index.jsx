@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <Container>
-      <div className="main-menu h-[60px] absolute top-0 z-50 flex items-center text-white justify-between  w-full">
+      <div className="main-menu left-0 h-[60px] absolute top-0 z-50 flex items-center  text-white justify-between  w-full">
         <Menu />
         <Icons />
         <span className="title">United Auto Sales Ltd</span>

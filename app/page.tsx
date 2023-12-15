@@ -38,11 +38,11 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full">
-      <Slider />
+       <Slider /> 
 
       <div ref={latestProductRef} className="pb-[100px]">
         {LatestProductInView && <LatestProduct />}
-      </div>
+      </div> 
 
       {/* <div
         ref={bookApplyRef}
