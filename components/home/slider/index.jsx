@@ -35,7 +35,7 @@ export default function Slider() {
             {data?.rows?.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <div className="relative  h-[700px] w-full">
+                  <div className="relative h-[720px] ">
                     <Image
                       src={`${baseImageUrl}${item.image_name}`}
                       alt=""

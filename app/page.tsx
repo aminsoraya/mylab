@@ -4,9 +4,9 @@ import Slider from "@/components/home/slider";
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 
-// const LatestProduct = dynamic(() => import("@/components/home/latestProduct"), {
-//   ssr: false,
-// });
+const LatestProduct = dynamic(() => import("@/components/home/latestProduct"), {
+  ssr: false,
+});
 // const BookApply = dynamic(() => import("@/components/home/bookApply"), {
 //   ssr: false,
 // });
@@ -20,9 +20,9 @@ import { useInView } from "react-intersection-observer";
 // });
 
 export default function Home() {
-  // const { inView: LatestProductInView, ref: latestProductRef } = useInView({
-  //   threshold: 0,
-  // });
+  const { inView: LatestProductInView, ref: latestProductRef } = useInView({
+    threshold: 0,
+  });
 
   // const { inView: BookApplyInView, ref: bookApplyRef } = useInView({
   //   threshold: 0,
@@ -37,15 +37,12 @@ export default function Home() {
   // });
 
   return (
-    <div  className="h-screen w-full">
+    <div className="h-screen w-full">
       <Slider />
 
-      {/* <div
-        ref={latestProductRef}
-        style={{ height: "100%", width: "100%", paddingBottom: "100px" }}
-      >
+      <div ref={latestProductRef} className="pb-[100px]">
         {LatestProductInView && <LatestProduct />}
-      </div> */}
+      </div>
 
       {/* <div
         ref={bookApplyRef}
