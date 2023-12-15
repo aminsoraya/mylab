@@ -15,9 +15,9 @@ const AboutUs = dynamic(() => import("@/components/home/aboutUs"), {
   ssr: false,
 });
 
-// const GoogleReview = dynamic(() => import("@/components/home/googleReview"), {
-//   ssr: false,
-// });
+const GoogleReview = dynamic(() => import("@/components/home/googleReview"), {
+  ssr: false,
+});
 
 export default function Home() {
   const { inView: LatestProductInView, ref: latestProductRef } = useInView({
@@ -32,9 +32,9 @@ export default function Home() {
     threshold: 0,
   });
 
-  // const { inView: GoogleReviewInView, ref: googleReviewRef } = useInView({
-  //   threshold: 0,
-  // });
+  const { inView: GoogleReviewInView, ref: googleReviewRef } = useInView({
+    threshold: 0,
+  });
 
   return (
     <div className="h-screen w-full">
@@ -51,19 +51,13 @@ export default function Home() {
         {BookApplyInView && <BookApply />}
       </div>
 
-      <div
-        ref={aboutUsRef}
-        className="bg-yellow w-full h-[100px]"
-      >
+      <div ref={aboutUsRef} className="bg-yellow w-full ">
         {AboutUsInView && <AboutUs />}
       </div>
 
-      {/* <div
-        style={{ width: "100%", minHeight: "100px", background: "#b29952" }}
-        ref={googleReviewRef}
-      >
+      <div className="w-full   bg-yellow" ref={googleReviewRef}>
         {GoogleReviewInView && <GoogleReview />}
-      </div> */}
+      </div>
     </div>
   );
 }

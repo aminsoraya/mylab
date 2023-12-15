@@ -18,3 +18,9 @@ body {
   border-radius: 0px 0px 0px 0px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
+.googleReview-navigation{
+  .swiper-button-prev,.swiper-button-next{
+    @apply text-yellow-custom mt-[60px];
+    
+  }
+}

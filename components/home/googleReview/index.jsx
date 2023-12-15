@@ -1,6 +1,7 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
+import { FaRegUserCircle, FaStar } from "react-icons/fa";
+import Container from "@/components/shared/container";
 
 const LatestProduct = () => {
   let reviews = [
@@ -21,24 +22,28 @@ const LatestProduct = () => {
   ];
 
   return (
-    <>
-      <div className="grid sm:grid-cols-2 grid-cols-1">
-        <div className="bg-gray-200">
-          <h2>Hellol there</h2>
+    <Container>
+      <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 py-20 text-white">
+        <div className="flex flex-col">
+          <h2>Google Reviews</h2>
+          <span className="text-sm">
+            We are committed to making you a long-lasting customer and friend
+          </span>
         </div>
-        <div className="bg-gray-300 ">
+        <div className=" w-full pt-10 lg:pt-0 googleReview-navigation">
           <Swiper
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
             }}
-            modules={[Autoplay]}
+            modules={[Autoplay, Navigation]}
+            navigation
             className="mySwiper"
           >
             {reviews.map((item, index) => {
               return (
                 <SwiperSlide>
-                  <div className="h-[300px] p-12 px-16 bg-gray text-white">
+                  <div className="h-[200px] text-sm p-12 px-3  bg-gray-normal text-white">
                     <div className="flex items-center gap-5">
                       <span className="text-4xl">
                         <FaRegUserCircle />
@@ -62,7 +67,8 @@ const LatestProduct = () => {
           </Swiper>
         </div>
       </div>
-    </>
+      <hr className="w-full" />
+    </Container>
   );
 };
 
