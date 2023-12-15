@@ -15,6 +15,7 @@ const config: Config = withMT({
       },
       backgroundColor: {
         gray: "#3d3c3d",
+        yellow: "#B29952",
       },
     },
   },

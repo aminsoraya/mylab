@@ -35,7 +35,7 @@ const Layout = (props) => {
         <NProgressContainer />
         <Header />
         {children}
-        {/* <ToastContainer /> */}
+        <ToastContainer />
         {/* <Footer /> */}
       </>
     )

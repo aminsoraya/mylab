@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/shared/button";
 import Container from "@/components/shared/container";
-
+import { WiDirectionLeft } from "react-icons/wi";
 const Welcome = () => {
   return (
     <Container>
@@ -21,7 +21,12 @@ const Welcome = () => {
           through different cars and provided information and contact us to
           experience our customer service and care. Thank You!
         </p>
-        <Button>View Inventory</Button>
+        <Button className="px-5">
+          <span>View Inventory</span>
+          <div className="rotate-180">
+            <WiDirectionLeft />
+          </div>
+        </Button>
       </div>{" "}
     </Container>
   );
