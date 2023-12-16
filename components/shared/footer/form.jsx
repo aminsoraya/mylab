@@ -3,20 +3,14 @@ import { mutate } from "swr";
 import { useContactUs } from "@/hooks/actions/contactUs";
 import { useAppStore } from "@/hooks/store";
 import { toast } from "react-toastify";
-import { useVehicles } from "@/hooks/actions/vehicles";
+
 import useSWR from "swr";
 import Input from "../input";
 import TextArea from "../textArea";
 import Button from "../button";
+import Vehicle from "../vehicle";
 
 const SubmitForm = () => {
-  let { domain, baseUrl, dealerData } = useAppStore();
-
-  let { data: vehicles, isLoading } = useSWR(
-    `${baseUrl}/api/dealership/advance/search/vehicles/get/${domain}`,
-    useVehicles
-  );
-
   return (
     <div className="bg-gray-dark p-5">
       <h1>Get In Touch</h1>
@@ -48,6 +42,7 @@ const SubmitForm = () => {
                 required
                 name="f_name"
                 type="text"
+                className="w-full"
                 placeholder="First Name"
               />
               <Input
@@ -55,17 +50,29 @@ const SubmitForm = () => {
                 name="l_name"
                 type="text"
                 placeholder="Last Name"
+                className="w-full"
               />
             </div>
             <div className="flex items-center  justify-between gap-2">
-              <Input required name="email" type="email" placeholder="Email" />
-              <Input required name="phone" type="tel" placeholder="Phone" />
+              <Input
+                required
+                name="email"
+                type="email"
+                className="w-full"
+                placeholder="Email"
+              />
+              <Input
+                required
+                name="phone"
+                type="tel"
+                className="w-full"
+                placeholder="Phone"
+              />
             </div>
-            <div className="flex items-center gap-10 ">
-              {/* <Field
-                name="desired_mid_vehicle"
-                placeholder="Desired Mid Vehicle"
-              /> */}
+            <div className="flex items-center gap-2 ">
+              <Vehicle />
+            </div>
+            <div className="flex items-center gap-2 ">
               <TextArea
                 required
                 name="message"

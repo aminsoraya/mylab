@@ -7,7 +7,7 @@ const Input = (
   return (
     <input
       {...otherAttr}
-      className={`w-full text-sm h-12 outline-none ${className ?? ""}`}
+      className={`text-sm h-12 outline-none ${className ?? ""}`}
     />
   );
 };
