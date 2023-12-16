@@ -36,7 +36,7 @@ const Layout = (props) => {
         <Header />
         {children}
         <ToastContainer />
-        {/* <Footer /> */}
+        <Footer />
       </>
     )
   );

@@ -5,6 +5,9 @@ import { useAppStore } from "@/hooks/store";
 import { toast } from "react-toastify";
 import { useVehicles } from "@/hooks/actions/vehicles";
 import useSWR from "swr";
+import Input from "../input";
+import TextArea from "../textArea";
+import Button from "../button";
 
 const SubmitForm = () => {
   let { domain, baseUrl, dealerData } = useAppStore();
@@ -14,65 +17,69 @@ const SubmitForm = () => {
     useVehicles
   );
 
-  console.log("vehicles ", vehicles);
   return (
-    // <div className={styles.form}>
-    //   <h2>Get In Touch</h2>
-    //   <h4 className={styles.h4}>Personal Information</h4>
-    //   <Formik
-    //     initialValues={{
-    //       f_name: "",
-    //       l_name: "",
-    //       email: "",
-    //       phone: "",
-    //       message: "",
-    //     }}
-    //     onSubmit={async (values, { resetForm }) => {
-    //       let { textus } = await mutate(
-    //         "contactUs",
-    //         useContactUs(
-    //           values,
-    //           `${baseUrl}/api/dealerweb/textus/add/${domain}`
-    //         )
-    //       );
-    //       textus && toast.success("Successfully Done");
-    //       resetForm();
-    //     }}
-    //   >
-    //     <Form>
-    //       <Row>
-    //         <Col lg={6} className="mb-3">
-    //           <Field name="f_name" type="text" placeholder="First Name" />
-    //         </Col>
-    //         <Col lg={6} className="mb-3">
-    //           <Field name="l_name" type="text" placeholder="Last Name" />
-    //         </Col>
-    //         <Col lg={6} className="mb-3">
-    //           <Field name="email" type="text" placeholder="Email" />
-    //         </Col>
-    //         <Col lg={6} className="mb-3">
-    //           <Field name="phone" type="text" placeholder="Phone" />
-    //         </Col>
-    //         <Col>
-    //           <Field
-    //             name="desired_mid_vehicle"
-    //             placeholder="Desired Mid Vehicle"
-    //           />
-    //         </Col>
-    //         <Col lg={12} className="mb-3">
-    //           <Field name="message" as="textarea" placeholder="Message" />
-    //         </Col>
-
-    //         <Col>
-    //           <button type="submit" className={styles.submit}>
-    //             Submit
-    //           </button>
-    //         </Col>
-    //       </Row>
-    //     </Form>
-    //   </Formik>
-    // </div>
-    <></>
+    <div className="bg-gray-dark p-5">
+      <h1>Get In Touch</h1>
+      <h3>Personal Information</h3>
+      <Formik
+        initialValues={{
+          f_name: "",
+          l_name: "",
+          email: "",
+          phone: "",
+          message: "",
+        }}
+        onSubmit={async (values, { resetForm }) => {
+          let { textus } = await mutate(
+            "contactUs",
+            useContactUs(
+              values,
+              `${baseUrl}/api/dealerweb/textus/add/${domain}`
+            )
+          );
+          textus && toast.success("Successfully Done");
+          resetForm();
+        }}
+      >
+        <Form>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center  justify-between gap-2">
+              <Input
+                required
+                name="f_name"
+                type="text"
+                placeholder="First Name"
+              />
+              <Input
+                required
+                name="l_name"
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+            <div className="flex items-center  justify-between gap-2">
+              <Input required name="email" type="email" placeholder="Email" />
+              <Input required name="phone" type="tel" placeholder="Phone" />
+            </div>
+            <div className="flex items-center gap-10 ">
+              {/* <Field
+                name="desired_mid_vehicle"
+                placeholder="Desired Mid Vehicle"
+              /> */}
+              <TextArea
+                required
+                name="message"
+                className="w-full"
+                placeholder="Message"
+              />
+            </div>
+            <div className="flex items-center gap-10 ">
+              <Button className="w-32 font-bold">Submit</Button>
+            </div>
+          </div>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 
