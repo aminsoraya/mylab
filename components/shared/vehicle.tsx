@@ -49,7 +49,7 @@ const Vehicle = () => {
     return [];
   }, [inputSerach]);
 
-  const getSeletecVehicle = data
+  const getSelectedVehicle = data
     ? (data?.data as IData[]).find((s) => s.Vehicle.id == selectedVehicle)
     : null;
   return (
@@ -82,12 +82,12 @@ const Vehicle = () => {
           })}
         </div>
       ) : null}
-      {getSeletecVehicle && (
+      {getSelectedVehicle && (
         <div className="flex px-1 items-center justify-start gap-3 relative bg-white h-12 text-black">
-          <span>{getSeletecVehicle.Vehicle.model_year}</span>
-          <span>{getSeletecVehicle.Vehicle.make}</span>
-          <span>{getSeletecVehicle.Vehicle.model}</span>
-          <span>{getSeletecVehicle.Vehicle.id}</span>
+          <span>{getSelectedVehicle.Vehicle.model_year}</span>
+          <span>{getSelectedVehicle.Vehicle.make}</span>
+          <span>{getSelectedVehicle.Vehicle.model}</span>
+          <span>{getSelectedVehicle.Vehicle.id}</span>
           <span
             onClick={() => setSelectedVehicle(undefined)}
             className="absolute right-2 text-red-900"
