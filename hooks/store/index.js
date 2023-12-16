@@ -6,6 +6,7 @@ export const useAppStore = create((set) => ({
   baseUrl: "",
   baseImageUrl: "",
   baseSpecialImageUrl: "",
+  activeMenu: "",
   setInitialData: ({
     domain,
     dealerData,
@@ -14,5 +15,8 @@ export const useAppStore = create((set) => ({
     baseSpecialImageUrl,
   }) => {
     set({ domain, dealerData, baseUrl, baseImageUrl, baseSpecialImageUrl });
+  },
+  setActiveMenu: ({ activeMenu }) => {
+    set({ activeMenu });
   },
 }));

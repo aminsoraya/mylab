@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { useAppStore } from "@/hooks/store";
 
 let links = [
   {
@@ -60,7 +61,7 @@ let links = [
 ];
 const Menu = () => {
   let [showBurgerMenu, setShowBurgerMenu] = useState(false);
-
+  const { activeMenu } = useAppStore();
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -85,7 +86,10 @@ const Menu = () => {
       <ul className="menu">
         {links.map((menu, index) => {
           return (
-            <li key={index} className="item">
+            <li
+              key={index}
+              className={`item ${activeMenu == menu.link && "active"}`}
+            >
               <Link href={menu.link ?? ""} legacyBehavior>
                 {menu.text}
               </Link>
@@ -93,7 +97,7 @@ const Menu = () => {
               <ul className="submenu  ">
                 {menu?.sub?.map((submenu, sIndex) => {
                   return (
-                    <li key={sIndex} >
+                    <li key={sIndex}>
                       <Link href={submenu.link ?? ""}>{submenu.text}</Link>
                     </li>
                   );

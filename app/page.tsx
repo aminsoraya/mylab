@@ -1,7 +1,9 @@
 "use client";
 
 import Slider from "@/components/home/slider";
+import { useAppStore } from "@/hooks/store";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const LatestProduct = dynamic(() => import("@/components/home/latestProduct"), {
@@ -35,6 +37,12 @@ export default function Home() {
   const { inView: GoogleReviewInView, ref: googleReviewRef } = useInView({
     threshold: 0,
   });
+
+  const { setActiveMenu } = useAppStore();
+
+  useEffect(() => {
+    setActiveMenu({ activeMenu: "/" });
+  }, []);
 
   return (
     <div className="w-full">
