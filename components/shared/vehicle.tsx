@@ -1,8 +1,9 @@
+"use client";
 import { useVehicles } from "@/hooks/actions/vehicles";
 import { useAppStore } from "@/hooks/store";
 import useSWR from "swr";
 import Input from "./input";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 interface IVehicle {
@@ -17,7 +18,13 @@ interface IData {
   stock_NO: string;
   Vehicle: IVehicle;
 }
-const Vehicle = () => {
+
+interface IProps {
+  callback: (id: number) => void;
+  name: string;
+  reset: number;
+}
+const Vehicle = (props: IProps) => {
   let { domain, baseUrl } = useAppStore();
   let [inputSerach, setInputSearch] = useState<string | undefined>();
   let [selectedVehicle, setSelectedVehicle] = useState<number | undefined>();
@@ -26,6 +33,11 @@ const Vehicle = () => {
     `${baseUrl}/dealership/vehicles/all/${domain}`,
     useVehicles
   );
+
+  useEffect(() => {
+    console.log("reset");
+    setSelectedVehicle(undefined);
+  }, [props.reset]);
 
   let filters = useMemo(() => {
     if (data && inputSerach) {
@@ -52,31 +64,35 @@ const Vehicle = () => {
   const getSelectedVehicle = data
     ? (data?.data as IData[]).find((s) => s.Vehicle.id == selectedVehicle)
     : null;
+
   return (
     <div className="flex flex-col relative bg-gray-500 w-full">
       <Input
         onChange={(e) => setInputSearch(e.currentTarget.value)}
         placeholder="Search (Year Make Model)"
         value={inputSerach}
+        name={props.name}
       />
       {filters.length ? (
         <div className="flex flex-col max-h-40 text-sm bg-gray-50 text-black w-full px-1 overflow-y-auto">
-          {filters.map(({ Vehicle }, index) => {
+          {filters.map((item, index) => {
             return (
               <div className="flex items-center gap-2 w-full justify-start min-h-[30px]  text-sm">
                 <input
+                  autoComplete="false"
                   type="checkbox"
                   onClick={() => {
-                    setSelectedVehicle(Vehicle.id);
+                    setSelectedVehicle(item.Vehicle.id);
                     setInputSearch(undefined);
+                    props.callback(item.id);
                   }}
                   name=""
                   id=""
                 />
-                <span>{Vehicle.model_year}</span>
-                <span>{Vehicle.make}</span>
-                <span>{Vehicle.model}</span>
-                <span>{Vehicle.id}</span>
+                <span>{item.Vehicle.model_year}</span>
+                <span>{item.Vehicle.make}</span>
+                <span>{item.Vehicle.model}</span>
+                <span>{item.Vehicle.id}</span>
               </div>
             );
           })}
